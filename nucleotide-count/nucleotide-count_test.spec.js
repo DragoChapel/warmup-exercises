@@ -40,14 +40,14 @@ describe('DNA', function() {
     expect(dna.count('U')).toEqual(0);
   });
 
-  xit('validates nucleotides', function(){
+  it('validates nucleotides', function(){
     var dna = new DNA('GGTTGG');
     expect(function(){
       dna.count('X');
     }).toThrow(new Error("Invalid Nucleotide"));
   });
 
-  xit('counts all nucleotides', function(){
+  it('counts all nucleotides', function(){
     var dna = new DNA("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"),
         expected = { A : 20, T : 21, G : 17, C : 12 };
     expect(dna.nucleotideCounts).toEqual(expected);

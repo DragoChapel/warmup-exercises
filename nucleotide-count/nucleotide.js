@@ -1,19 +1,72 @@
 "use strict";
 
-var validNucleotides = [ "A", "C", "G", "T" ];
-
-var hasProperty = function( obj, property ) {
-	return Object.prototype.hasOwnProperty.call( obj, property );
+var NucleotideHandler = function( config ) {
+	this.symbols = config.symbols;
+	this.matches = config.matchesFunc;
+	this.add = config.add;
+	this.getCount = config.getCount;
 };
 
-var getCurrentCount = function( nucleotide, counts ) {
-	return hasProperty( counts, nucleotide ) ? counts[ nucleotide ] : 0;
+var symbolMatcher = function( nucleotide ) {
+	return this.symbols.indexOf( nucleotide ) > -1;
 };
+
+var uracilHandler = new NucleotideHandler({
+	symbols: [ "U" ],
+	matchesFunc: symbolMatcher,
+	add: function noop() {},
+	getCount: function() {
+		return 0;
+	}
+});
+
+var dnaNucleotideHandler = new NucleotideHandler({
+	symbols: [ "A", "C", "G", "T" ],
+	matchesFunc: symbolMatcher,
+	add: function( nucleotide, counts ) {
+		counts[ nucleotide ] = counts[ nucleotide ] + 1;
+	},
+	getCount: function( nucleotide, counts ) {
+		return counts[ nucleotide ];
+	}
+});
+
+var throwInvalid = function() {
+	throw new Error( "Invalid Nucleotide" );
+};
+
+var invalidHandler = new NucleotideHandler({
+	symbols: [],
+	matchesFunc: function() {
+		return true;
+	},
+	add: throwInvalid,
+	getCount: throwInvalid
+});
+
+var nucleotideHandlers = [
+	dnaNucleotideHandler,
+	uracilHandler,
+	invalidHandler
+];
 
 var countNucleotides = function( nucleotidesArray, defaultCounts ) {
 	var counts = defaultCounts;
 	nucleotidesArray.forEach( function( nucleotide ) {
-		counts[ nucleotide ] = getCurrentCount( nucleotide, counts ) + 1;
+		nucleotideHandlers.some( function( handler ) {
+			if ( handler.matches( nucleotide ) ) {
+				handler.add( nucleotide, counts );
+				return true;
+			}
+		});
+	});
+	return counts;
+};
+
+var getDefaultCounts = function( validNucleotides ) {
+	var counts = {};
+	validNucleotides.forEach( function( nucleotide ) {
+		counts[ nucleotide ] = 0;
 	});
 	return counts;
 };
@@ -22,27 +75,22 @@ var nucleotideSequenceToArray = function( nucleotideSequence ) {
 	return nucleotideSequence.split( "" );
 };
 
-var getDefaultCounts = function( validNucleotides ) {
-
-	// TODO: This is too similar to `countNucleotides`
-	var counts = {};
-	validNucleotides.forEach( function( nucleotide ) {
-		counts[ nucleotide ] = 0;
-	});
-	return counts;
-};
-
 var DNA = function( nucleotideSequence ) {
 	this.nucleotideCounts = countNucleotides(
 		nucleotideSequenceToArray( nucleotideSequence ),
-		getDefaultCounts( validNucleotides )
+		getDefaultCounts( dnaNucleotideHandler.symbols )
 	);
 };
 
 DNA.prototype.count = function( nucleotide ) {
-
-	// TODO: Handle "U" somwhere
-	return this.nucleotideCounts[ nucleotide ];
+	var count = 0;
+	nucleotideHandlers.some( function( handler ) {
+		if ( handler.matches( nucleotide ) ) {
+			count = handler.getCount( nucleotide, this.nucleotideCounts );
+			return true;
+		}
+	}.bind( this ) );
+	return count;
 };
 
 module.exports = DNA;
