@@ -1,5 +1,12 @@
 "use strict";
 
+var NucleotideError = function( message ) {
+	this.message = message;
+};
+NucleotideError.prototype = Object.create( Error.prototype, {
+	name: { value: "NucleotideError" }
+});
+
 var NucleotideHandler = function( config ) {
 	this.symbols = config.symbols;
 	this.matches = config.matchesFunc;
@@ -32,7 +39,7 @@ var dnaNucleotideHandler = new NucleotideHandler({
 });
 
 var throwInvalid = function() {
-	throw new Error( "Invalid Nucleotide" );
+	throw new NucleotideError( "Invalid Nucleotide" );
 };
 
 var invalidHandler = new NucleotideHandler({
