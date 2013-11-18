@@ -11,13 +11,13 @@ describe("School", function() {
     expect(school.db).toEqual({});
   });
 
-  xit("add a student", function() {
+  it("add a student", function() {
     school.add("Aimee",2);
     var expectedDb = { 2 : [ "Aimee" ] };
     expect(school.db).toEqual(expectedDb);
   });
 
-  xit("add mores students in the same class", function() {
+  it("add mores students in the same class", function() {
     school.add("James",2);
     school.add("Blair",2);
     school.add("Paul",2);
@@ -25,14 +25,14 @@ describe("School", function() {
     expect(school.db).toEqual(expectedDb);
   });
 
-  xit("add students to different grades", function() {
+  it("add students to different grades", function() {
     school.add("Chelsea",3);
     school.add("Logan",7);
     var expectedDb = { 3 : [ "Chelsea" ], 7 : [ "Logan"] };
     expect(school.db).toEqual(expectedDb);
   });
 
-  xit("get students in a grade", function() {
+  it("get students in a grade", function() {
     school.add("Franklin",5);
     school.add("Bradley",5);
     school.add("Jeff",1);
@@ -40,12 +40,12 @@ describe("School", function() {
     expect(school.grade(5)).toEqual(expectedStudents);
   });
 
-  xit("get students in a non-existant grade", function() {
+  it("get students in a non-existant grade", function() {
     expect(school.grade(1)).toEqual([]);
   });
 
 
-  xit("sort school", function() {
+  it("sort school", function() {
     school.add("Jennifer", 4);
     school.add("Kareem", 6);
     school.add("Christopher", 4);
