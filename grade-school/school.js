@@ -31,7 +31,7 @@ School.prototype.grade = function( grade ) {
 
 School.prototype.sort = function() {
 	var sortedDb = {};
-	Object.getOwnPropertyNames( this.db ).forEach( function( grade ) {
+	Object.keys( this.db ).forEach( function( grade ) {
 		sortedDb[ grade ] = getSortedGrade( this.db, grade );
 	}.bind( this ) );
 	return sortedDb;
