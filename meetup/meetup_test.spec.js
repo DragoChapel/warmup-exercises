@@ -8,121 +8,121 @@ describe("Meetup", function() {
     expect(meetup.monteenth()).toEqual(expectedDate);
   });
 
-  xit("monteenth of august 2013",function() {
+  it("monteenth of august 2013",function() {
     var meetup = new Meetup(7,2013);
     var expectedDate = new Date(2013, 7, 19);
     expect(meetup.monteenth()).toEqual(expectedDate);
   });
 
-  xit("monteenth of september 2013",function() {
+  it("monteenth of september 2013",function() {
     var meetup = new Meetup(8,2013);
     var expectedDate = new Date(2013, 8, 16);
     expect(meetup.monteenth()).toEqual(expectedDate);
   });
 
-  xit("tuesteenth of march 2013",function() {
+  it("tuesteenth of march 2013",function() {
     var meetup = new Meetup(2,2013);
     var expectedDate = new Date(2013, 2, 19);
     expect(meetup.tuesteenth()).toEqual(expectedDate);
   });
 
-  xit("tuesteenth of april 2013",function() {
+  it("tuesteenth of april 2013",function() {
     var meetup = new Meetup(3,2013);
     var expectedDate = new Date(2013, 3, 16);
     expect(meetup.tuesteenth()).toEqual(expectedDate);
   });
 
-  xit("tuesteenth of august 2013",function() {
+  it("tuesteenth of august 2013",function() {
     var meetup = new Meetup(7,2013);
     var expectedDate = new Date(2013, 7, 13);
     expect(meetup.tuesteenth()).toEqual(expectedDate);
   });
 
-  xit("wednesteenth of january 2013",function() {
+  it("wednesteenth of january 2013",function() {
     var meetup = new Meetup(0,2013);
     var expectedDate = new Date(2013, 0, 16);
     expect(meetup.wednesteenth()).toEqual(expectedDate);
   });
 
-  xit("wednesteenth of february 2013",function() {
+  it("wednesteenth of february 2013",function() {
     var meetup = new Meetup(1,2013);
     var expectedDate = new Date(2013, 1, 13);
     expect(meetup.wednesteenth()).toEqual(expectedDate);
   });
 
-  xit("wednesteenth of june 2013",function() {
+  it("wednesteenth of june 2013",function() {
     var meetup = new Meetup(5,2013);
     var expectedDate = new Date(2013, 5, 19);
     expect(meetup.wednesteenth()).toEqual(expectedDate);
   });
 
-  xit("thursteenth of may 2013",function() {
+  it("thursteenth of may 2013",function() {
     var meetup = new Meetup(4,2013);
     var expectedDate = new Date(2013, 4, 16);
     expect(meetup.thursteenth()).toEqual(expectedDate);
   });
 
-  xit("thursteenth of june 2013",function() {
+  it("thursteenth of june 2013",function() {
     var meetup = new Meetup(5,2013);
     var expectedDate = new Date(2013, 5, 13);
     expect(meetup.thursteenth()).toEqual(expectedDate);
   });
 
-  xit("thursteenth of september 2013",function() {
+  it("thursteenth of september 2013",function() {
     var meetup = new Meetup(8,2013);
     var expectedDate = new Date(2013, 8, 19);
     expect(meetup.thursteenth()).toEqual(expectedDate);
   });
 
-  xit("friteenth of april 2013",function() {
+  it("friteenth of april 2013",function() {
     var meetup = new Meetup(3,2013);
     var expectedDate = new Date(2013, 3, 19);
     expect(meetup.friteenth()).toEqual(expectedDate);
   });
 
-  xit("friteenth of august 2013",function() {
+  it("friteenth of august 2013",function() {
     var meetup = new Meetup(7,2013);
     var expectedDate = new Date(2013, 7, 16);
     expect(meetup.friteenth()).toEqual(expectedDate);
   });
 
-  xit("friteenth of september 2013",function() {
+  it("friteenth of september 2013",function() {
     var meetup = new Meetup(8,2013);
     var expectedDate = new Date(2013, 8, 13);
     expect(meetup.friteenth()).toEqual(expectedDate);
   });
 
-  xit("saturteenth of february 2013",function() {
+  it("saturteenth of february 2013",function() {
     var meetup = new Meetup(1,2013);
     var expectedDate = new Date(2013, 1, 16);
     expect(meetup.saturteenth()).toEqual(expectedDate);
   });
 
-  xit("saturteenth of april 2013",function() {
+  it("saturteenth of april 2013",function() {
     var meetup = new Meetup(3,2013);
     var expectedDate = new Date(2013, 3, 13);
     expect(meetup.saturteenth()).toEqual(expectedDate);
   });
 
-  xit("saturteenth of october 2013",function() {
+  it("saturteenth of october 2013",function() {
     var meetup = new Meetup(9,2013);
     var expectedDate = new Date(2013, 9, 19);
     expect(meetup.saturteenth()).toEqual(expectedDate);
   });
 
-  xit("sunteenth of may 2013",function() {
+  it("sunteenth of may 2013",function() {
     var meetup = new Meetup(4,2013);
     var expectedDate = new Date(2013, 4, 19);
     expect(meetup.sunteenth()).toEqual(expectedDate);
   });
 
-  xit("sunteenth of june 2013",function() {
+  it("sunteenth of june 2013",function() {
     var meetup = new Meetup(5,2013);
     var expectedDate = new Date(2013, 5, 16);
     expect(meetup.sunteenth()).toEqual(expectedDate);
   });
 
-  xit("sunteenth of october 2013",function() {
+  it("sunteenth of october 2013",function() {
     var meetup = new Meetup(9,2013);
     var expectedDate = new Date(2013, 9, 13);
     expect(meetup.sunteenth()).toEqual(expectedDate);
