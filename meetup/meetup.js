@@ -6,8 +6,10 @@ var daysToNextDayOfWeek = function( dayOfWeek, desiredDayOfWeek ) {
 	return ( desiredDayOfWeek - dayOfWeek + DAYS_IN_WEEK ) % DAYS_IN_WEEK;
 };
 
+var FIRST_TEENTH_DAY = 13;
+
 var getFirstTeenthInMonth = function( month, year ) {
-	return new Date( year, month, 13 );
+	return new Date( year, month, FIRST_TEENTH_DAY );
 };
 
 var getDayTeenth = function( firstTeenth, day ) {
