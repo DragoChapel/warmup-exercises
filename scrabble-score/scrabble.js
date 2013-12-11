@@ -5,33 +5,36 @@ var toCharArray = function( str ) {
 	return str.split( "" );
 };
 
-var toInt = function( value ) {
-	return parseInt( value, 10 );
+var createPointsObject = function( pointValue, letters ) {
+	return {
+		points: pointValue,
+		letters: toCharArray( letters )
+	};
 };
 
-var createLetterToPointsMapping = function( pointsObj ) {
+var createLetterToPointsMapping = function( pointsData ) {
 	var letterToPointsMapping = {};
-	Object.keys( pointsObj ).forEach( function pointsLoop( pointsStr ) {
-		var letters = pointsObj[ pointsStr ];
-		var points = toInt( pointsStr );
-		toCharArray( letters ).forEach( function lettersLoop( letter ) {
+	pointsData.forEach( function pointsLoop( pointsObj ) {
+		var letters = pointsObj.letters;
+		var points = pointsObj.points;
+		letters.forEach( function lettersLoop( letter ) {
 			letterToPointsMapping[ letter ] = points;
 		});
 	});
 	return letterToPointsMapping;
 };
 
-var points = {
-	1: "aeioulnrst",
-	2: "dg",
-	3: "bcmp",
-	4: "fhvwy",
-	5: "k",
-	8: "jx",
-	10: "qz"
-};
+var pointsData = [
+	createPointsObject( 1, "aeioulnrst" ),
+	createPointsObject( 2, "dg" ),
+	createPointsObject( 3, "bcmp" ),
+	createPointsObject( 4, "fhvwy" ),
+	createPointsObject( 5, "k" ),
+	createPointsObject( 8, "jx" ),
+	createPointsObject( 10, "qz" )
+];
 
-var letterToPointsMapping = createLetterToPointsMapping( points );
+var letterToPointsMapping = createLetterToPointsMapping( pointsData );
 
 var pointsLookup = function( letter, letterToPointsMapping ) {
 	return letterToPointsMapping[ letter.toLowerCase() ];
