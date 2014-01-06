@@ -28,14 +28,12 @@ var Allergies = function( score ) {
 	this.score = score;
 };
 
-Allergies.prototype.list = function() {
-	return allergens.filter( function allergensListFilter( allergen ) {
-		return isAllergyIndicated( allergen, this.score );
-	}.bind( this ));
-};
-
 Allergies.prototype.allergicTo = function( allergen ) {
 	return isAllergyIndicated( allergen, this.score );
+};
+
+Allergies.prototype.list = function() {
+	return allergens.filter( this.allergicTo, this );
 };
 
 module.exports = Allergies;
